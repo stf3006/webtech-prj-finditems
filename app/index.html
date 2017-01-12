@@ -1,0 +1,226 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="controllers/lostcontroller.js"></script>
+    <script type="text/javascript" src="controllers/foundcontroller.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body ng-app="items">
+
+    <div id="mainDiv" class="row">
+        <div class="jumbotron">
+            <h2>
+                <center>platforma ta online <br/> de obiecte pierdute si gasite.</center>
+            </h2>
+        </div>
+
+        <div id="leftDiv" class="col-sm-6">
+
+            <center>
+                <div ui-view="leftview"></div>
+            </center>
+
+        </div>
+
+        <div id="rightDiv" class="col-sm-6">
+
+            <center>
+                <div ui-view="rightview"></div>
+            </center>
+
+        </div>
+
+
+
+    </div>
+
+    <div id="secondDiv" ng-controller="mainController" class="row">
+
+        <div id="leftDiv" class="col-sm-6">
+
+            <table class="table table-condensed table-responsive" style="table-layout:fixed">
+                <thead>
+                    <tr>
+                        <th class="col-sm-2">nume</th>
+                        <th class="col-sm-2">categorie</th>
+                        <th class="col-sm-2">data</th>
+                        <th class="col-sm-2">oras</th>
+                        <th class="col-sm-2">modifica</th>
+                        <th class="col-sm-2">delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="obj in lostobjects" ng-include="getLostTemplate(obj)">
+
+
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div id="rightDiv" class="col-sm-6">
+
+            <table class="table table-condensed table-responsive" style="table-layout:fixed">
+                <thead>
+                    <tr>
+                        <th class="col-sm-2">nume</th>
+                        <th class="col-sm-2">categorie</th>
+                        <th class="col-sm-2">data</th>
+                        <th class="col-sm-2">oras</th>
+                        <th class="col-sm-2">modifica</th>
+                        <th class="col-sm-2">delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="obj in foundobjects" ng-include="getFoundTemplate(obj)">
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <script type="text/ng-template" id="displayLost">
+
+        <td>
+
+            {{obj.name}}
+
+        </td>
+        <td>
+
+            {{obj.categoryId}}
+
+        </td>
+        <td>
+
+            {{obj.date | date:"MM/dd/yyyy"}}
+
+        </td>
+        <td>
+
+            {{obj.city}}
+
+        </td>
+        <td>
+            <button ng-click="editLostItem(obj)" class="btn btn-info">editeaza</button>
+        </td>
+
+        <td>
+
+            <button ng-click="deleteLostItem(obj)" class="btn btn-danger">sterge</button>
+
+        </td>
+
+    </script>
+
+    <script type="text/ng-template" id="editLost">
+
+        <td>
+
+            <input type="text" ng-model="obj.name" />
+
+        </td>
+        <td>
+
+            <input type="text" ng-model="obj.categoryId" />
+
+        </td>
+        <td>
+
+            <input type="date" ng-model="obj.date" value="{{obj.date}}" />
+
+        </td>
+        <td>
+
+            <input type="text" ng-model="obj.city" />
+
+        </td>
+        <td>
+
+            <button ng-click="saveLostItem(obj)" class="btn btn-success">salveaza</button>
+
+        </td>
+
+    </script>
+
+    <script type="text/ng-template" id="displayFound">
+
+        <td>
+
+            {{obj.name}}
+
+        </td>
+        <td>
+
+            {{obj.categoryId}}
+
+        </td>
+        <td>
+
+            {{obj.date | date:"MM/dd/yyyy"}}
+
+        </td>
+        <td>
+
+            {{obj.city}}
+
+        </td>
+        <td>
+            <button ng-click="editFoundItem(obj)" class="btn btn-info">editeaza</button>
+        </td>
+
+        <td>
+
+            <button ng-click="deleteFoundItem(obj)" class="btn btn-danger">sterge</button>
+
+        </td>
+
+    </script>
+
+    <script type="text/ng-template" id="editFound">
+
+        <td>
+
+            <input type="text" ng-model="obj.name" />
+
+        </td>
+        <td>
+
+            <input type="text" ng-model="obj.categoryId" />
+
+        </td>
+        <td>
+
+            <input type="date" ng-model="obj.date" value="{{obj.date}}" />
+
+        </td>
+        <td>
+
+            <input type="text" ng-model="obj.city" />
+
+        </td>
+        <td>
+
+            <button ng-click="saveFoundItem(obj)" class="btn btn-success">salveaza</button>
+
+        </td>
+
+    </script>
+</body>
+
+</html>

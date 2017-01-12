@@ -1,0 +1,67 @@
+<h3>formular adaugare produs pierdut:</h3>
+<form>
+
+    <table>
+
+       <tr>
+
+            <td>
+
+                <label for="lostItemName">nume obiect:</label>
+                <input type="text" id="lostItemName" ng-model="lostItem.name">
+
+            </td>
+
+        </tr>
+        
+        <tr>
+            
+            <td>
+                <label for="lostItemCategory">categorie:</label>
+                <select ng-model="lostItem.categoryId" id="lostItemCategory">
+                    
+                    <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+                    
+                </select>
+                
+            </td>
+            
+        </tr>
+        
+        <tr>
+
+            <td>
+
+                <label for="lostItemDate">data pierderii:</label>
+                <input type="date" id="lostItemDate" ng-model="lostItem.date">
+
+            </td>
+
+        </tr>
+        
+        <tr>
+
+            <td>
+
+                <label for="lostItemCity">oras:</label>
+                <input type="text" id="lostItemCity" ng-model="lostItem.city">
+
+            </td>
+
+        </tr>
+        <tr>
+            
+            <td>
+                
+                <button ng-click="addLostItem()" class="btn btn-primary btn-sm btn-block">adauga</button>
+                
+            </td>
+            
+        </tr>
+
+
+    </table>
+
+
+
+</form>

@@ -1,0 +1,27 @@
+{
+  "name": "finditems",
+  "version": "1.0.0",
+  "description": "Aplicatia \"Find Items\" este de tip Single Page Application, in care utilizatorii pot posta obiecte gasite sau pierdute.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "mysql": "^2.12.0",
+    "express": "^4.14.0",
+    "sequelize": "^3.29.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stf3006/webtech-prj-finditems.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stf3006/webtech-prj-finditems/issues"
+  },
+  "homepage": "https://github.com/stf3006/webtech-prj-finditems#readme"
+}
